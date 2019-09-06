@@ -1,11 +1,21 @@
 import axios from "axios";
 import Oops from '../components/Oops';
+import Head from 'next/head';
 
 const Index = (props) => {
 
     return (
 
         <React.Fragment>
+             <Head>
+          <meta charSet="UTF-8" />
+          <meta name="description" content="An example PWA" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="theme-color" content="#302ecd" />
+          <title>BlChamp</title>
+          <link rel="manifest" href="/_next/static/manifest.json" />
+          <link rel="icon" href="/static/favicon.ico" />
+        </Head>
             <h1>Batman TV Shows</h1>
             <div>
                 {props.posts.name === "Error" ? <Oops /> : props.posts.map((post) => (

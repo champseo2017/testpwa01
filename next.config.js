@@ -49,7 +49,7 @@ module.exports = withOffline(withCSS({
     };
 
 
-    if (isServer) {
+    if (!dev) {
       config.plugins.push(
         new NextWorkboxPlugin({
           buildId,
