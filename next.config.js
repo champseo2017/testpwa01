@@ -79,7 +79,7 @@ module.exports = withOffline(withCSS({
             },
           ],
           includeDirectory: true,
-          publicPath: '..',
+          publicPath: '.',
         })
       );
     }
