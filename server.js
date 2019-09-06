@@ -5,7 +5,7 @@ const next = require('next');
 const cache = require('lru-cache'); // for using least-recently-used based caching
 
 const PORT = process.env.PORT || 3000;
-const dev = process.env.NODE_ENV !== 'production';
+const dev = process.env.PORT || 3000;;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
