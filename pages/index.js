@@ -19,18 +19,25 @@ const Index = (props) => {
             })
         }
 
-        $('document').ready(() => {
+        $('body').find('#closenoti-online').click(() => {
+            $('body').find('.noti').fadeOut("slow");
+        })
 
-            $('body').find('#closenoti-online').click(() => {
-                $('body').find('.noti').fadeOut("slow");
-            })
-
-            $('body').find('#closenoti-offline').click(() => {
-                $('body').find('.noti').fadeOut("slow");
-            })
-
+        $('body').find('#closenoti-offline').click(() => {
+            $('body').find('.noti').fadeOut("slow");
+        })
+        const { OmiseCard } = window;
+        OmiseCard.configure({
+            publicKey: 'pkey_test_5h5s8shqg6xxhpgckft',
+            amount: 10000
         });
 
+        OmiseCard.configureButton('#checkout-button', {
+            frameLabel: 'Merchant name',
+            submitLabel: 'PAY RIGHT NOW !',
+        });
+
+        OmiseCard.attach();
     })
 
     const reloadnoti = () => {
@@ -40,8 +47,6 @@ const Index = (props) => {
         }
 
     }
-
-
     return (
 
         <Layout>
@@ -49,6 +54,9 @@ const Index = (props) => {
             <p>อายุ {props.age} ปี</p>
             <button onClick={props.increteAge}>+ คลิกบวกอายุ</button>
             <button onClick={props.decreteAge}>- คลิกลบอายุ</button>
+            <p></p>
+            <p>Notifications Online and Ofline</p>
+            <p></p>
             <Online onChange={() => {
                 reloadnoti()
             }}>
@@ -69,9 +77,6 @@ const Index = (props) => {
                     </div>
                 </div>
                 <p></p>
-                {() => {
-                    console.log('fewfwef');
-                }}
             </Online>
             <Offline onChange={() => {
                 reloadnoti()
@@ -97,7 +102,13 @@ const Index = (props) => {
                     window.location.reload();
                 }}
             </Offline>
-
+            <p></p>
+            <h1>Omise</h1>
+            <p></p>
+            <form action="/checkout.php" method="post">
+                <input type="submit" value="Pay" id="checkout-button"/>
+            </form>
+            <p></p>
             <div>
                 {props.posts.name === "Error" ? <Oops /> : props.posts.map((post) => (
                     <div key={post.id}>

@@ -16,6 +16,7 @@ const Layout = (props) => {
                 <link rel="manifest" href="/_next/static/manifest.json" />
                 <link rel="icon" href="/static/favicon.ico" />
                 <link rel="stylesheet" href="/_next/static/style.css" />
+                <script src="https://cdn.omise.co/omise.js"></script>
             </Head>
             <div className="container justify-content-between heightcon">
                 {props.children}
