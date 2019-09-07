@@ -11,14 +11,14 @@ module.exports = withOffline(withCSS({
       fs: 'empty',
     };
 
-    /*if(!isServer){
+    if(!isServer){
       config.module.rules.find(({ test }) => test.test('style.css')).use.push({
         loader: 'css-purify-webpack-loader',
         options: {
           includes: ['./pages/*.js', './components/*.js'],
         },
       });
-    } */
+    } 
 
     const workboxOpts = {
       clientsClaim: true,
@@ -49,7 +49,7 @@ module.exports = withOffline(withCSS({
     };
 
 
-    if (!dev) {
+    if (!isServer && !dev) {
       config.plugins.push(
         new NextWorkboxPlugin({
           buildId,
@@ -57,8 +57,8 @@ module.exports = withOffline(withCSS({
         }),
         new WebpackPwaManifest({
           filename: 'static/manifest.json',
-          name: 'BlChamp',
-          short_name: 'BlChamp',
+          name: 'Next PWA',
+          short_name: 'Next-PWA',
           description: 'A Movie browsing PWA using Next.js and Google Workbox',
           background_color: '#ffffff',
           theme_color: '#5755d9',
@@ -68,7 +68,7 @@ module.exports = withOffline(withCSS({
           inject: false,
           start_url: '/',
           ios: {
-            'apple-mobile-web-app-title': 'BlChamp',
+            'apple-mobile-web-app-title': 'Next-PWA',
             'apple-mobile-web-app-status-bar-style': '#5755d9',
           },
           icons: [
@@ -79,7 +79,7 @@ module.exports = withOffline(withCSS({
             },
           ],
           includeDirectory: true,
-          publicPath: '.',
+          publicPath: '..',
         })
       );
     }
