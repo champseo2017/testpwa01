@@ -1,22 +1,17 @@
 import axios from "axios";
 import Oops from '../components/Oops';
-import Head from 'next/head';
+import Layout from "../components/Layout";
+import {connect} from 'react-redux'
 
 const Index = (props) => {
 
     return (
 
-        <React.Fragment>
-             <Head>
-          <meta charSet="UTF-8" />
-          <meta name="description" content="An example PWA" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="theme-color" content="#302ecd" />
-          <title>BlChamp</title>
-          <link rel="manifest" href="/_next/static/manifest.json" />
-          <link rel="icon" href="/static/favicon.ico" />
-        </Head>
-            <h1>Batman TV Shows</h1>
+        <Layout>
+            <h1>Next js and PWA and Redux</h1>
+            <p>อายุ {props.age} ปี</p>
+            <button onClick={props.increteAge}>+ คลิกบวกอายุ</button>
+            <button onClick={props.decreteAge}>- คลิกลบอายุ</button>
             <div>
                 {props.posts.name === "Error" ? <Oops /> : props.posts.map((post) => (
                     <div key={post.id}>
@@ -25,7 +20,7 @@ const Index = (props) => {
                     </div>
                 ))}
             </div>
-        </React.Fragment>
+        </Layout>
 
     )
 
@@ -51,4 +46,21 @@ Index.getInitialProps = async () => {
     }
 }
 
-export default Index
+const mapStateToProps = (state) => {
+    return {
+        age:state.countAge.count
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+        return {
+            increteAge: () => {
+                dispatch({type:'INCREMENT'})
+            },
+            decreteAge:() => {
+                dispatch({type:'DECREMENT'})
+            }
+        }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index)
