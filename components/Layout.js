@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import Head from 'next/head';
-import '../style.css';
-
+import Header from './Header/Header'
+import 'bootstrap/dist/css/bootstrap.css';
 
 const Layout = (props) => {
-
+    
     return (
         <React.Fragment>
             <Head>
@@ -18,6 +18,8 @@ const Layout = (props) => {
                 <link rel="stylesheet" href="/_next/static/style.css" />
                 <script src="https://cdn.omise.co/omise.js"></script>
             </Head>
+            <Header />
+           
             <div className="container justify-content-between heightcon">
                 {props.children}
             </div>
