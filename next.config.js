@@ -12,7 +12,7 @@ module.exports = withOffline(withCSS({
       fs: 'empty',
     };
 
-    if (!isServer) {
+    if (isServer) {
       config.module.rules.find(({ test }) => test.test('style.css')).use.push({
         loader: 'css-purify-webpack-loader',
         options: {
@@ -57,7 +57,7 @@ module.exports = withOffline(withCSS({
     };
 
 
-    if (!isServer && !dev) {
+    if (isServer) {
       config.plugins.push(
         new NextWorkboxPlugin({
           buildId,
