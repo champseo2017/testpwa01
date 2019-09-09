@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Head from 'next/head';
 import Header from './Header/Header'
 import 'bootstrap/dist/css/bootstrap.css';
-import '../style.css'
 
 const Layout = (props) => {
     
