@@ -11,7 +11,7 @@ module.exports = withOffline(withCSS({
       fs: 'empty',
     };
 
-    if(isServer){
+    if(!isServer){
       config.module.rules.find(({ test }) => test.test('style.css')).use.push({
         loader: 'css-purify-webpack-loader',
         options: {
@@ -35,6 +35,13 @@ module.exports = withOffline(withCSS({
             cacheName: 'html-cache',
           },
         },
+		{
+          urlPattern: '/user',
+          handler: 'networkFirst',
+          options: {
+            cacheName: 'html-cache',
+          },
+        },
         {
           urlPattern: /.*\.(?:png|jpg|jpeg|svg|gif)/,
           handler: 'cacheFirst',
@@ -49,7 +56,7 @@ module.exports = withOffline(withCSS({
     };
 
 
-    if (isServer) {
+    if (!isServer && !dev) {
       config.plugins.push(
         new NextWorkboxPlugin({
           buildId,
