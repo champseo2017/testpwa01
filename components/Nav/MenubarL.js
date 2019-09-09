@@ -30,12 +30,12 @@ const MenubarL = (props) => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Link prefetch href="/">
+                <Link href="/">
                   <a className="nav-link">Home</a>
                 </Link>
               </NavItem>
               <NavItem>
-                <Link prefetch href="/user">
+                <Link href="/user">
                   <a className="nav-link">Photo</a>
                 </Link>
               </NavItem>
