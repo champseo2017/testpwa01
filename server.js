@@ -4,14 +4,14 @@ const { parse } = require('url')
 const next = require('next');
 const cache = require('lru-cache'); // for using least-recently-used based caching
 
-const PORT = process.env.PORT || 3000;
+const PORT = 8000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const ssrCache = new cache({
-  max: 20, // not more than 20 results will be cached
-  maxAge: 1000 * 60 * 5, // 5 mins
+  max: 1000, // not more than 20 results will be cached
+  maxAge: 1000 * 60 * 90, // 5 mins
 });
 
 app.prepare().then(() => {
@@ -20,7 +20,7 @@ app.prepare().then(() => {
   server.get('/', (req, res) => {
     renderAndCache(req, res, '/');
   });
-  
+
   server.get('/user', (req, res) => {
     renderAndCache(req, res, '/user');
   });

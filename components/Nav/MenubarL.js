@@ -23,7 +23,7 @@ const MenubarL = (props) => {
     <React.Fragment>
       <Navbar color="light" light expand="md">
         <div className="container">
-          <Link prefetch href="/">
+          <Link href="/">
             <a className="nav-link">React GoGo</a>
           </Link>
           <NavbarToggler onClick={toggle} />
