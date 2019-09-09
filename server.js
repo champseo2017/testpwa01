@@ -20,6 +20,10 @@ app.prepare().then(() => {
   server.get('/', (req, res) => {
     renderAndCache(req, res, '/');
   });
+  
+  server.get('/user', (req, res) => {
+    renderAndCache(req, res, '/user');
+  });
 
   server.get('/posts', (req, res) => {
     console.log(req)
