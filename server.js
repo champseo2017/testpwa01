@@ -10,8 +10,8 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const ssrCache = new cache({
-  max: 1000, // not more than 20 results will be cached
-  maxAge: 1000 * 60 * 90, // 5 mins
+  max: 20, // not more than 20 results will be cached
+  maxAge: 1000 * 60 * 5, // 5 mins
 });
 
 app.prepare().then(() => {
